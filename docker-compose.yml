@@ -1,0 +1,19 @@
+services:
+        finetune:
+               build:
+                       context: .
+               image: frt/finetune
+               container_name: finetunre
+               shm_size: '128g'
+               mem_limit: '110g'
+               ports:
+                       - 127.0.0.1:38888:8888
+                       - 127.0.0.1:26006:26006
+               volumes:
+                       - ./src:/mnt
+               deploy:
+                       resources:
+                               reservations:
+                                     devices:
+                                       - count: all
+                                         capabilities: [gpu]
